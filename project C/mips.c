@@ -8,10 +8,10 @@ double calculatePerimeter(double width, double length);
 int main()
 {
     double width, length;
-	printf("Enter the shape width: ");
+    printf("Enter the shape width: ");
     scanf(" %lf", &width);
 
-	printf("Enter the shape length: ");
+    printf("Enter the shape length: ");
     scanf(" %lf", &length);
 
     char *type = detectShape(width, length);
