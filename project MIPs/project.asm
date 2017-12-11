@@ -53,7 +53,8 @@ main:
 	            la $a0, msg4
 	            syscall
 	#------------------------------------------------------------------------------------------
-	 jal printLine   # just  print  new  line
+	exit : 
+	       jal printLine   # just  print  new  line
 	#--------------------------------------------------------------------
 
 	# perimeter function call
