@@ -1,32 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char *detectShape(double a, double b, double c, double d);
-double calculateArea(double a, double b);
-double calculatePerimeter(double a, double b);
+char *detectShape(double width, double length);
+double calculateArea(double width, double length);
+double calculatePerimeter(double width, double length);
 
 int main()
 {
-	printf("Enter the four sides of the shape: ");
-    double a, b, c, d;
-    scanf(" %lf %lf %lf %lf", &a, &b, &c, &d);
+    double width, length;
+    printf("Enter the shape width: ");
+    scanf(" %lf", &width);
 
-    char *type = detectShape(a, b, c, d);
+    printf("Enter the shape length: ");
+    scanf(" %lf", &length);
 
-    printf("\nThe type is: %s", type);
+    char *type = detectShape(width, length);
 
-    double perimeter = calculatePerimeter(a,b);
+    printf("\nThe shape type is: %s", type);
+
+    double perimeter = calculatePerimeter(width, length);
     printf("\nThe perimeter is: %.2lf\n", perimeter);
 
-    double area = calculateArea(a,b);
+    double area = calculateArea(width, length);
     printf("The area is: %.2lf\n", area);
 
     return 0;
 }
 
-char *detectShape(double a, double b, double c, double d){
+char *detectShape(double width, double length){
 
-    if(a == b && b == c && c ==d){
+    if(width == length){
 
         return "square";
     }else{
@@ -36,14 +39,14 @@ char *detectShape(double a, double b, double c, double d){
 
 }
 
-double calculateArea(double a, double b){
+double calculateArea(double width, double length){
 
-    return a * b;
+    return width * length;
 }
 
-double calculatePerimeter(double a, double b){
+double calculatePerimeter(double width, double length){
 
-    return 2.0 * (a + b);
+    return 2.0 * (width + length);
 }
 
 
