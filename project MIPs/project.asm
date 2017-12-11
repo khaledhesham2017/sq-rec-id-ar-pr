@@ -26,16 +26,15 @@ main:
 	syscall
 	move $t1, $v0	# syscall results returned in $v0
 
-	jal printLine
-
-	#------------------------------------------------------  
+	jal printLine   # just  print  new  line 
+	move $a1, $t0		# send $t0 to detact function in a1
+	move $a2 ,$t1		# send $t1 to detact function in a2
+    #------------------------------------------------------  
 	# Call detect function
 
 	# TODO delete #- if anyone wants to try his function
 
-	move $a1, $t0		# send $t0 to detact function in a1
-	move $a2 ,$t1		# send $t1 to detact function in a2
-
+	
 	#-jal detect		# call detect function 
 	#-move $t2 ,$v1		# assign the return value to $t2
 	    
@@ -54,12 +53,7 @@ main:
 	            #-la $a0, msg4
 	            #-syscall
 	#------------------------------------------------------------------------------------------
-	# To print a new line   
-	#-exit :
-		# Print \n
-		#-li $v0, 4		# print_string syscall code = 4
-		#-la $a0, newline
-		#-syscall
+	 jal printLine   # just  print  new  line
 	#--------------------------------------------------------------------
 
 	# perimeter function call
