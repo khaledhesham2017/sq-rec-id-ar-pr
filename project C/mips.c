@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char *detectShape(double width, double length);
+int detectShape(double width, double length);
 double calculateArea(double width, double length);
 double calculatePerimeter(double width, double length);
 
@@ -14,9 +14,14 @@ int main()
     printf("Enter the shape length: ");
     scanf(" %lf", &length);
 
-    char *type = detectShape(width, length);
+    int type = detectShape(width, length);
+    if (!type){
+        printf("\nThe shape type is: square");
+    }
+    else {
+        printf("\nThe shape type is: rectangle");
+    }
 
-    printf("\nThe shape type is: %s", type);
 
     double perimeter = calculatePerimeter(width, length);
     printf("\nThe perimeter is: %.2lf\n", perimeter);
@@ -27,14 +32,14 @@ int main()
     return 0;
 }
 
-char *detectShape(double width, double length){
+int detectShape(double width, double length){
 
     if(width == length){
 
-        return "square";
+        return 0;
     }else{
 
-        return "rectangle";
+        return -1;
     }
 
 }
