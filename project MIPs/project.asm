@@ -26,10 +26,7 @@ main:
 	syscall
 	move $t1, $v0	# syscall results returned in $v0
 
-	# Prints a new line
-	li $v0, 4		# print_string syscall code = 4
-	la $a0, newline
-	syscall
+	jal printLine
 
 	#------------------------------------------------------  
 	# Call detect function
@@ -79,10 +76,7 @@ main:
 	#-syscall
     #----------------------------------------------------------------------------------------------
 	
-	#Print \n
-	li $v0, 4		# print_string syscall code = 4
-	la $a0, newline
-	syscall
+	jal printLine
 	       
 	#---------------------------------------------------------------------------------------------- 
     # area  function call
@@ -114,7 +108,12 @@ area:
 	mul $v1, $a1, $a2
 
 	jr $ra
-
+printLine:
+      #Print \n
+	li $v0, 4		# print_string syscall code = 4
+	la $a0, newline
+	syscall
+	jr $ra 
 #--------------------------------------------------------------          
 # Start .data segment (data!)
 	.data
