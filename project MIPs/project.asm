@@ -35,23 +35,23 @@ main:
 	# TODO delete #- if anyone wants to try his function
 
 	
-	#-jal detect		# call detect function 
-	#-move $t2 ,$v1		# assign the return value to $t2
+	jal detect		# call detect function 
+	# assign the return value to $t2
 	    
-	#-bne $t2, $zero, square		# if $t2 != $zero this is square 
-    	#-j rec						# else this is rectangle
-        	#-square:	#square label 
-				# Prints 'The shape type is: square'
-				#-li $v0, 4
-	            #-la $a0, msg3
-	            #-syscall
-	            #-j exit #jump to exit
+	bne $v1, 0, square		# if $t2 != $zero this is square 
+    	j rec						# else this is rectangle
+        	square:	#square label 
+				 #Prints 'The shape type is: square'
+				li $v0, 4
+	            la $a0, msg3
+	            syscall
+	            j exit #jump to exit
 
-			#-rec:		#rectangle  lable 
+			rec:		#rectangle  lable 
             	# Prints 'The shape type is: rectangle'
-	            #-li $v0, 4
-	            #-la $a0, msg4
-	            #-syscall
+	            li $v0, 4
+	            la $a0, msg4
+	            syscall
 	#------------------------------------------------------------------------------------------
 	 jal printLine   # just  print  new  line
 	#--------------------------------------------------------------------
@@ -95,7 +95,16 @@ main:
 #plz  all  comment  all  line   in function 
 #detect function take  for side   in  $a0 ,$a1,$a2and $a3
 detect:
-           #TODO  put  here  detect  function  it  take tow  parenter  in $a1,$a2  and  return  in $v1 if  sqr  -1 if  rec  0
+        #TODO  put  here  detect  function  it  take two  paramters  $a1,$a2  and  return  in $v1 if  sqr  -1 if  rec  0
+		#if a1 and a2 are equal jump to equal
+		#else the code will continue till 'jr'
+		beq $a1, $a2, square
+		li $v1,0
+		jr $ra
+		d_square: 
+		li $v1, 1
+		jr $ra
+
 perimeter:
          #TODO  put  function   perimeter  take  input  in $a1 , $a2  and  return in  $v1
 area:
