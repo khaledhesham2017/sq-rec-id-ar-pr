@@ -99,9 +99,9 @@ detect:
 perimeter:
          #TODO  put  function   perimeter  take  input  in $a1 , $a2  and  return in  $v1
 area:
-	mul $v1, $a1, $a2
+	mul $v1, $a1, $a2 		# Multiply the width by the length and assign the result to $v1
 
-	jr $ra
+	jr $ra 					# Return to the caller
 printLine:
       #Print \n
 	li $v0, 4		# print_string syscall code = 4
