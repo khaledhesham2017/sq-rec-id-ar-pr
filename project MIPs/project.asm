@@ -58,16 +58,16 @@ main:
 
 	# perimeter function call
 	# TODO delete #- if anyone wants to try his function
-    #-jal perimeter
-    #-Prints "The perimeter is: "
-	#-li $v0, 4
-	#-la $a0, msg5
-	#-syscall
+    jal perimeter
+    # Prints "The perimeter is: "
+	li $v0, 4
+	la $a0, msg5
+	syscall
 	
 	# Print perimeter
-	#-li $v0, 1
-	#-move $a0, $v1
-	#-syscall
+	li $v0, 1
+	move $a0, $v1
+	syscall
     #----------------------------------------------------------------------------------------------
 	
 	jal printLine
@@ -98,6 +98,9 @@ detect:
            #TODO  put  here  detect  function  it  take tow  parenter  in $a1,$a2  and  return  in $v1 if  sqr  -1 if  rec  0
 perimeter:
          #TODO  put  function   perimeter  take  input  in $a1 , $a2  and  return in  $v1
+	add $v1 , $a1 , $a2   # add the width to the length and assign the value to $v1
+    sll $v1 , $v1 , 1	  # shit the sum value 1 bit (left shift) as multiply by 2
+	jr $ra
 area:
 	mul $v1, $a1, $a2 		# Multiply the width by the length and assign the result to $v1
 
