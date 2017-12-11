@@ -97,11 +97,9 @@ main:
 #detect function take  for side   in  $a0 ,$a1,$a2and $a3
 detect:
         #TODO  put  here  detect  function  it  take two  paramters  $a1,$a2  and  return  in $v1 if  sqr  -1 if  rec  0
-		#if a1 and a2 are equal jump to equal
-		#else the code will continue till 'jr'
-		beq $a1, $a2, square
-		li $v1,0
-		jr $ra
+		beq $a1, $a2, d_square 	#if a1 and a2 are equal jump to equal
+		li $v1,0 				#else the code will continue till 'jr'
+		jr $ra					#return so the code stop excuting at this point
 		d_square: 
 		li $v1, 1
 		jr $ra
