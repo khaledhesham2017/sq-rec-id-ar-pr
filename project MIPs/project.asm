@@ -36,8 +36,8 @@ main:
 
 	# TODO delete #- if anyone wants to try his function
 
-	#-move $a1, $t0		# send $t1 to detact function in a1
-	#-move $a2 ,$t1  	# send $t2 to detact function in a2
+	move $a1, $t0		# send $t0 to detact function in a1
+	move $a2 ,$t1		# send $t1 to detact function in a2
 
 	#-jal detect		# call detect function 
 	#-move $t2 ,$v1		# assign the return value to $t2
@@ -87,16 +87,16 @@ main:
 	#---------------------------------------------------------------------------------------------- 
     # area  function call
 	# TODO delete #- if anyone wants to try his function
-    #-jal area
+    jal area
     # Prints 'The area is: ' 
-	#-li $v0, 4
-	#-la $a0, msg6
-	#-syscall
+	li $v0, 4
+	la $a0, msg6
+	syscall
 
 	# Print area
-	#-li $v0, 1
-	#-move $a0 ,$v1
-	#-syscall
+	li $v0, 1
+	move $a0 ,$v1
+	syscall
 	#-----------------------------------------------------------
 
     # Exit the program
@@ -111,7 +111,9 @@ detect:
 perimeter:
          #TODO  put  function   perimeter  take  input  in $a1 , $a2  and  return in  $v1
 area:
-     #TODO  put  funcatuin area take  input  in $a1 ,$a2  and  return  in $v1
+	mul $v1, $a1, $a2
+
+	jr $ra
 
 #--------------------------------------------------------------          
 # Start .data segment (data!)
