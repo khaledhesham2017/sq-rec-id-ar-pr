@@ -39,7 +39,7 @@ int detectShape(double width, double length){
         return 0;
     }else{
 
-        return -1;
+        return 1;
     }
 
 }
