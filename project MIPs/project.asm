@@ -12,7 +12,12 @@ main:
 	li $v0, 7		# read_double  syscall code = 7
 	syscall	        # system_call
 	mov.d $f14, $f0	# syscall results returned in $f14
-	# Second input
+	# Negative validation for the first input
+	mtc1 $zero, $f2
+    c.le.d $f14, $f2 	# if f14 less than or equal 0
+		bc1t error		# Print error
+
+    # Second input
     # Prints 'Enter the shape length: '
 	li $v0, 4		# print_string syscall code = 4
 	la $a0, msg2	# load the address of msg
@@ -21,7 +26,11 @@ main:
 	li $v0, 7		# read_double syscall code = 7
 	syscall         # system_call
 	mov.d $f16, $f0	# syscall results returned in $f16
-	#-------------------------------------------------------
+	# Negative validation for the second input
+	mtc1 $zero, $f2
+    c.le.d $f16, $f2 	# if f16 less than or equal 0
+		bc1t error		# Print error
+    #-------------------------------------------------------
     jal printLine   # just  print  new  line 
 	#------------------------------------------------------  
 	# Call detect function
@@ -62,10 +71,16 @@ main:
 	li $v0, 3    				# print_double syscall code = 3
 	mov.d $f12 ,$f0  			# Prints 'The area is: '
 	syscall        				# return system call
+	jal exit 					# Jump to exit
 	#-----------------------------------------------------------
+	error:
+		li $v0, 4 				# print_string syscall code = 4
+		la $a0, msg7  			# Prints 'The area is: ' 
+		syscall
 	# Exit the program
-	li $v0, 10					# Exit
-	syscall 					# return system call
+	exit:
+		li $v0, 10				# Exit
+		syscall 				# return system call
 #---------------------------------------------------------------------------------------------------
 detect:
 	# Detect whether the shape is square or rectangle, given width and length
@@ -102,4 +117,5 @@ msg3:	.asciiz	"The shape type is: square"
 msg4:	.asciiz	"The shape type is: rectangle"
 msg5:	.asciiz	"The perimeter is: "
 msg6:	.asciiz	"The area is: "
+msg7:	.asciiz	"Value error: please enter a valid number!"
 newline:   .asciiz	"\n"
