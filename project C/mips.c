@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 int detectShape(double width, double length);
 double calculateArea(double width, double length);
@@ -10,9 +9,20 @@ int main()
     double width, length;
     printf("Enter the shape width: ");
     scanf(" %lf", &width);
+    if (width <= 0)
+    {
+        printf("Value error: please enter a valid number!\n");
+        return 0;
+    }
 
     printf("Enter the shape length: ");
     scanf(" %lf", &length);
+    if (length <= 0)
+    {
+        printf("Value error: please enter a valid number!\n");
+        return 0;
+
+    }
 
     int type = detectShape(width, length);
     if (!type){
